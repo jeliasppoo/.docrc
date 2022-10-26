@@ -1,0 +1,216 @@
+autocmd BufNewFile *.cpp silent! 0r ~/Dropbox/.cabecalho/cpp.txt
+autocmd BufNewFile *.cpp silent! exe "1," . 14 . "g/File: .*/s//File: " . expand("%:t:r") . ".cpp"
+autocmd BufNewFile *.cpp silent! exe "1," . 14 . "g/Período: .*/s//Período: " . strftime("%d-%d-%y")
+
+autocmd BufNewFile *.h 0r ~/Dropbox/.cabecalho/fileh.txt
+autocmd BufNewFile *.h silent! exe "1," . 14 . "g/File: .*/s//File: ".expand("%:t:r") . ".h"
+autocmd BufNewFile *.h silent! exe "1," . 14 . "g/Período: .*/s//Período: ".strftime("%d-%d-%Y")
+autocmd BufNewFile *.h silent! exe "1," . 14 . "g/#ifndef .*/s//#ifndef ".expand("%:t:r")."_h"
+autocmd BufNewFile *.h silent! exe "1," . 14 . "g/#define .*/s//#define ".expand("%:t:r")."_h"
+
+autocmd BufNewFile *.cpp silent! 0r ~/Dropbox/.mainGrafo/cpp.txt
+autocmd BufNewFile *.cpp silent! exe "1," . 25 . "g/File: .*/s//File: " . expand("%:t:r") . ".cpp"
+autocmd BufNewFile *.cpp silent! exe "1," . 25 . "g/Período: .*/s//Período: " . strftime("%d-%d-%y")
+
+source $VIMRUNTIME/vimrc_example.vim
+
+
+autocmd BufNewFile *.java silent! 0r ~/Dropbox/.cabecalho/cpp.txt
+autocmd BufNewFile *.java silent! exe "1," . 14 . "g/File: .*/s//File: " . expand("%:t:r") . ".java"
+autocmd BufNewFile *.java silent! exe "1," . 14 . "g/Período: .*/s//Período: " . strftime("%d-%d-%y")
+
+" setl spell spl=pt
+" augroup skeletons
+" autocmd!
+" autocmd BufNewFile * silent!
+" \ 0r ~/.vim/skeletons/skel.%:e|norm G
+" autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp
+" autocmd BufNewFile main_grafo.cpp 0r ~/.vim/templates/main_grafo.cpp
+" autocmd BufNewFile *.hpp 0r ~/.vim/templates/skeleton.hpp
+" autocmd BufNewFile *.h 0r ~/.vim/templates/skeleton.h
+" autocmd BufNewFile *.java 0r ~/.vim/templates/arquivoJava.java
+" augroup end
+
+" Skeleton for .rb files
+" augroup ruby
+" Remove all existing autocommands in the group
+" au!
+" au BufNewFile *.rb 0r ~/.vim/skeletons/ruby.skel
+" augroup end
+"
+set foldmethod=syntax
+set autoindent
+set relativenumber
+set incsearch
+set autowrite
+set nocompatible
+set wim=longest,list
+set vb t_vb=
+set t_Co=256
+set completeopt=preview
+set cursorcolumn
+map == mqHmwgg=G`wzt`q<cr>
+set smartindent
+set history=5000
+set number
+set cursorline
+set clipboard=unnamedplus
+set tabstop=4 softtabstop=4 expandtab shiftwidth=4
+set foldmethod=syntax
+set foldlevel=99
+
+colo deus 
+let g:indentLine_enabled = 1
+let g:IndentLinesToggle = 1
+let g:indentLine_color_term = 256
+let g:indentLine_color_tty_light = 7 " (default: 4)
+let g:indentLine_color_dark = 1 " (default: 2)
+" map  <ck> i :IndentLinesToggle <cr>
+
+" map <M-n> :NERDTreeToggle<cr>
+set encoding=utf8
+set guifont=Anonymice\ Nerd\ Font\ Mono:h12
+" set guifont=DroidSansMono\ Nerd\ Font\ Mono:h12
+
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_statusline_ontop=0
+let g:airline_theme='base16_twilight'
+let g:airline#extensions#tabline#formatter = 'default'
+
+filetype plugin on
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+map \\ <Plug>NERDCommenterInvert
+
+let g:ale_linters = {'python': ['flake8', 'pylint'], 'javascript': ['eslint']}
+let g:ale_completion_enabled = 0 
+
+" let g:ale_fixers = {
+    " 'python': ['yapf'],
+" }
+nmap <F10> :ALEFix<CR>
+
+let g:ale_fix_on_save = 1
+
+
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+
+
+" Disable function highlighting (affects both C and C++ files)
+let g:cpp_function_highlight = 1
+" Enable highlighting of C++11 attributes
+let g:cpp_attributes_highlight = 1
+" Highlight struct/class member variables (affects both C and C++ files)
+"
+let g:cpp_member_highlight = 1
+let g:cpp_simple_highlight = 1
+" Vim
+"
+let g:vim_json_conceal = 1
+let g:markdown_syntax_conceal = 1
+let g:indentLine_enabled  =  1
+let g:indentLine_char = '┊'
+
+let g:airline_symbols = { }
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols = { }
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ' ☰ '
+let g:airline_symbols.maxlinenr = '  '
+let g:airline_symbols.dirty ='⚡'
+let c_no_curly_error=1
+" set guifont=DroidSansMono\ Nerd\ Font\ Mono:12
+set guifont=DroidSansMono\ Nerd\ Font:12
+
+" "declaração da função
+function! Executar(arq)
+    :wall
+    if &filetype == 'html'
+        :exec '!google-chrome' a:arq
+    elseif &filetype == 'python'
+        :exec '!python3' a:arq
+    elseif &filetype == 'cpp'
+        :exec '!g++ -Wall -Wconversion -o /tmp/a.out' a:arq ';/tmp/a.out'
+    elseif &filetype == 'java'
+        :exec '!javac -Wall -Wconversion -o /tmp/a.out' a:arq ';/tmp/a.out'
+    endif
+endfunction
+noremap mk :w<cr>:!clear<cr>:call Executar(shellescape(@%, 1))<CR>
+
+function ReplaceAll()
+    let a = expand("<cword>")
+    set hlsearch
+    let b = input('Substituir "' . a . '" por: ')
+    if !empty(a)
+        execute '%s/' . a . '/' . b . '/g'
+        execute '%s/' . b . '//ng
+        set nohlsearch
+    endfunction
+    nnoremap <silent>! <c-b> : call ReplaceAll()<cr>
+    nnoremap <c-b> :call ReplaceAll()<cr>
+
+    autocmd Filetype text setl spell spl=pt
+    autocmd BufNewFile,BufRead *.txt setl spell spl=pt
+    nnoremap <space> za
+    nnoremap pdf <esc> :hardcopy
+    nnoremap <c-l> :wall!<cr>:bn<cr>n
+    nnoremap <c-h> :wall!<cr>:bp<cr>n
+
+    function Terminal()
+        " verificar se há buffer bash aberto:
+        let meuterminal = bufname('bash')
+        if meuterminal == ''
+            below term ++rows=10
+        else
+            let bnr = bufnr(meuterminal)
+            exec ':bwipe! ' bnr
+        endif
+    endfunction
+    map <c-t> :call Terminal()<cr>
+    au TerminalOpen * if &buftype == 'terminal' | setlocal nobuflisted | endif
+
+    "Mapeamento java
+    "
+    inoremap th throw new IndexOutOfBoundsException("Posição indevida");<esc>11hi
+    " inoremap tr try{<cr>}<cr>catch(){<cr>}aguardarEnter();<esc>10h1ki
+
+    nnoremap gits :! git status <cr>
+    nnoremap gitl :! git log --stat <cr>
+    nnoremap gita :! git add<cfile> <cr>
+    nnoremap gitc :! git commit <cfile> <cr>
+    nnoremap gitcc :! git clone
+    nnoremap gitp :! push <cr> jeliasppoo<cr>ghp_XYV5ZGciTDjjuEKhFzOwzDKoaMdlj22CKqg
+    nnoremap chave ghp_XYV5ZGciTDjjuEKhFzOwzDKoaMdlj22CKqg
+
+    imap { {<cr>}<esc>O
+
+
+    let g:ycm_language_server =
+                \ [{
+                \   'name': 'ccls',
+                \   'cmdline': [ 'ccls' ],
+                \   'filetypes': [ 'c', 'cpp', 'cuda', 'objc', 'objcpp' ],
+                \   'project_root_files': [ '.ccls-root', 'compile_commands.json' ]
+                \ }]
+    " source ~/.vim/coc.nvimrc
+
+"Desativar destaque de função (afeta arquivos C e C++)
+let g:cpp_function_highlight = 1 
+
+"Ativar destaque de atributos C++11
+let g:cpp_attributes_highlight = 1
+
+" Realçar variáveis membro de struct/class (afeta arquivos C e C++)
+let g:cpp_member_highlight = 1
+
+"Coloque todas as palavras-chave padrão C e C++ no grupo de destaque do Vim 'Statement'
+" (afeta arquivos C e C++)
+let g:cpp_simple_highlight = 1
