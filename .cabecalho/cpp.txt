@@ -1,0 +1,13 @@
+/*============================================================
+File:AjudeOsMatematicos.cpp
+Data Entrega :26-08-22
+-------------------------------------------------------------
+Graduando: Elias de Jesus Miranda - 201621164
+Graduando: Jhonatan Gardioli Luiz - 201920247
+Graduando: Felipe Baptista Serapião - 201620440
+
+Professor: Mayron Cesar de Oliveira
+Disciplina: Algoritimos em Grafos
+-------------------------------------------------------------*/  
+
+

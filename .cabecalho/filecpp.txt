@@ -1,0 +1,13 @@
+/*============================================================
+File: 
+Período: 
+-------------------------------------------------------------
+Graduando: Elias de Jesus Miranda 
+Professor: JÚLIO CÉSAR ALVES - DOCENTE
+Disciplina: Práticas de Programação Orientada a Objetos 
+-------------------------------------------------------------*/
+
+#ifndef 
+#define  
+
+#endif
