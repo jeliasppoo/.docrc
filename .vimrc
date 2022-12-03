@@ -1,44 +1,35 @@
 autocmd BufNewFile *.cpp silent! 0r ~/Dropbox/.cabecalho/cpp.txt
 autocmd BufNewFile *.cpp silent! exe "1," . 14 . "g/File: .*/s//File: " . expand("%:t:r") . ".cpp"
-autocmd BufNewFile *.cpp silent! exe "1," . 14 . "g/Período: .*/s//Período: " . strftime("%d-%d-%y")
+autocmd BufNewFile *.cpp silent! exe "1," . 14 . "g/Data: .*/s//Data: " . strftime("%d-%m-%y_2")
+autocmd BufNewFile *.cpp silent! exe "1," . 14 . "g/#ifndef .*/s//#ifndef ".expand("%:t:r").".cpp"
+autocmd BufNewFile *.cpp silent! exe "1," . 14 . "g/#define .*/s//#define ".expand("%:t:r").".cpp"
 
 autocmd BufNewFile *.h 0r ~/Dropbox/.cabecalho/fileh.txt
 autocmd BufNewFile *.h silent! exe "1," . 14 . "g/File: .*/s//File: ".expand("%:t:r") . ".h"
-autocmd BufNewFile *.h silent! exe "1," . 14 . "g/Período: .*/s//Período: ".strftime("%d-%d-%Y")
+autocmd BufNewFile *.h silent! exe "1," . 14 . "g/Data: .*/s//Data: ".strftime("%d-%m-%y_2")
 autocmd BufNewFile *.h silent! exe "1," . 14 . "g/#ifndef .*/s//#ifndef ".expand("%:t:r")."_h"
 autocmd BufNewFile *.h silent! exe "1," . 14 . "g/#define .*/s//#define ".expand("%:t:r")."_h"
 
-autocmd BufNewFile *.cpp silent! 0r ~/Dropbox/.mainGrafo/cpp.txt
-autocmd BufNewFile *.cpp silent! exe "1," . 25 . "g/File: .*/s//File: " . expand("%:t:r") . ".cpp"
-autocmd BufNewFile *.cpp silent! exe "1," . 25 . "g/Período: .*/s//Período: " . strftime("%d-%d-%y")
-
-source $VIMRUNTIME/vimrc_example.vim
-
-
-autocmd BufNewFile *.java silent! 0r ~/Dropbox/.cabecalho/cpp.txt
-autocmd BufNewFile *.java silent! exe "1," . 14 . "g/File: .*/s//File: " . expand("%:t:r") . ".java"
-autocmd BufNewFile *.java silent! exe "1," . 14 . "g/Período: .*/s//Período: " . strftime("%d-%d-%y")
-
-" setl spell spl=pt
-" augroup skeletons
-" autocmd!
-" autocmd BufNewFile * silent!
-" \ 0r ~/.vim/skeletons/skel.%:e|norm G
-" autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp
-" autocmd BufNewFile main_grafo.cpp 0r ~/.vim/templates/main_grafo.cpp
-" autocmd BufNewFile *.hpp 0r ~/.vim/templates/skeleton.hpp
-" autocmd BufNewFile *.h 0r ~/.vim/templates/skeleton.h
-" autocmd BufNewFile *.java 0r ~/.vim/templates/arquivoJava.java
-" augroup end
-
-" Skeleton for .rb files
-" augroup ruby
-" Remove all existing autocommands in the group
-" au!
-" au BufNewFile *.rb 0r ~/.vim/skeletons/ruby.skel
-" augroup end
+" autocmd BufNewFile *.cpp silent! 0r ~/Dropbox/.mainGrafo/cpp.txt
+" autocmd BufNewFile *.cpp silent! exe "1," . 25 . "g/File: .*/s//File: " . expand("%:t:r") . ".cpp"
+" autocmd BufNewFile *.cpp silent! exe "1," . 25 . "g/Data: .*/s//Data: " . strftime("%d-%m-%y_22")
 "
+" source $VIMRUNTIME/vimrc_example.vim
+
+autocmd BufNewFile *.java silent! 0r ~/Dropbox/.cabecalho/java.txt
+autocmd BufNewFile *.java silent! exe "1," . 14 . "g/File: .*/s//File: " . expand("%:t:r") . ".java"
+autocmd BufNewFile *.java silent! exe "1," . 14 . "g/Data: .*/s//Data: " . strftime("%d-%m-%y_22")
+autocmd BufNewFile *.java silent! exe "1," . 14 . "g/class .*/s//class " . expand("%:t:r")." {"
+autocmd BufNewFile *.java silent! exe "1," . 16 . "g/public .*/s//public " . expand("%:t:r")."(){"
+
+" public class App
+"salva a útima linha de edição 
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif 
 set foldmethod=syntax
+set wrap tw=120
+set linebreak
+set foldmethod=indent
+set filetype=cpp 
 set autoindent
 set relativenumber
 set incsearch
@@ -56,15 +47,14 @@ set number
 set cursorline
 set clipboard=unnamedplus
 set tabstop=4 softtabstop=4 expandtab shiftwidth=4
-set foldmethod=syntax
 set foldlevel=99
 
 colo deus 
 let g:indentLine_enabled = 1
 let g:IndentLinesToggle = 1
 let g:indentLine_color_term = 256
-let g:indentLine_color_tty_light = 7 " (default: 4)
-let g:indentLine_color_dark = 1 " (default: 2)
+let g:indentLine_color_tty_light = 4 " (default: 4)
+let g:indentLine_color_dark = 2 " (default: 2)
 " map  <ck> i :IndentLinesToggle <cr>
 
 " map <M-n> :NERDTreeToggle<cr>
@@ -85,15 +75,18 @@ let g:NERDDefaultAlign = 'left'
 map \\ <Plug>NERDCommenterInvert
 
 let g:ale_linters = {'python': ['flake8', 'pylint'], 'javascript': ['eslint']}
-let g:ale_completion_enabled = 0 
+"Alto Completo para vim 
+let g:ale_completion_enabled = 1
 
 " let g:ale_fixers = {
-    " 'python': ['yapf'],
+    " 'python': ['yapf'], 'c++': ['yapf'],
 " }
+
+" Não sei o que faz 
 nmap <F10> :ALEFix<CR>
 
+"Salvamentos de arquivos vim 
 let g:ale_fix_on_save = 1
-
 
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
@@ -143,7 +136,7 @@ function! Executar(arq)
         :exec '!javac -Wall -Wconversion -o /tmp/a.out' a:arq ';/tmp/a.out'
     endif
 endfunction
-noremap mk :w<cr>:!clear<cr>:call Executar(shellescape(@%, 1))<CR>
+noremap <silent>! mk :w<cr>:!clear<cr>:call Executar(shellescape(@%, 1))<CR>
 
 function ReplaceAll()
     let a = expand("<cword>")
@@ -153,54 +146,43 @@ function ReplaceAll()
         execute '%s/' . a . '/' . b . '/g'
         execute '%s/' . b . '//ng
         set nohlsearch
-    endfunction
-    nnoremap <silent>! <c-b> : call ReplaceAll()<cr>
-    nnoremap <c-b> :call ReplaceAll()<cr>
+endfunction
+nnoremap <silent>! <c-b> : call ReplaceAll()<cr>
+nnoremap <c-b> :call ReplaceAll()<cr>
 
-    autocmd Filetype text setl spell spl=pt
-    autocmd BufNewFile,BufRead *.txt setl spell spl=pt
-    nnoremap <space> za
-    nnoremap pdf <esc> :hardcopy
-    nnoremap <c-l> :wall!<cr>:bn<cr>n
-    nnoremap <c-h> :wall!<cr>:bp<cr>n
+autocmd Filetype text setl spell spl=pt
+autocmd BufNewFile,BufRead *.txt setl spell spl=pt
+nnoremap <space> za
+nnoremap pdf <esc> :hardcopy
+nnoremap <c-l> :wall!<cr>:bn<cr>n
+nnoremap <c-h> :wall!<cr>:bp<cr>n
 
-    function Terminal()
-        " verificar se há buffer bash aberto:
-        let meuterminal = bufname('bash')
-        if meuterminal == ''
-            below term ++rows=10
-        else
-            let bnr = bufnr(meuterminal)
-            exec ':bwipe! ' bnr
-        endif
-    endfunction
-    map <c-t> :call Terminal()<cr>
-    au TerminalOpen * if &buftype == 'terminal' | setlocal nobuflisted | endif
+function Terminal()
+    " verificar se há buffer bash aberto:
+    let meuterminal = bufname('bash')
+    if meuterminal == ''
+        below term ++rows=10
+    else
+        let bnr = bufnr(meuterminal)
+        exec ':bwipe! ' bnr
+    endif
+endfunction
 
-    "Mapeamento java
-    "
-    inoremap th throw new IndexOutOfBoundsException("Posição indevida");<esc>11hi
-    " inoremap tr try{<cr>}<cr>catch(){<cr>}aguardarEnter();<esc>10h1ki
+map <c-t> :call Terminal()<cr>
+au TerminalOpen * if &buftype == 'terminal' | setlocal nobuflisted | endif
 
-    nnoremap gits :! git status <cr>
-    nnoremap gitl :! git log --stat <cr>
-    nnoremap gita :! git add<cfile> <cr>
-    nnoremap gitc :! git commit <cfile> <cr>
-    nnoremap gitcc :! git clone
-    nnoremap gitp :! push <cr> jeliasppoo<cr>ghp_XYV5ZGciTDjjuEKhFzOwzDKoaMdlj22CKqg
-    nnoremap chave ghp_XYV5ZGciTDjjuEKhFzOwzDKoaMdlj22CKqg
+"Mapeamento java
+"
+imap { {<cr>}<esc>O
+let g:ycm_language_server =
+            \ [{
+            \   'name': 'ccls',
+            \   'cmdline': [ 'ccls' ],
+            \   'filetypes': ['java', 'c', 'cpp', 'cuda', 'objc', 'objcpp' ],
+            \   'project_root_files': [ '.ccls-root', 'compile_commands.json' ]
+            \ }]
 
-    imap { {<cr>}<esc>O
-
-
-    let g:ycm_language_server =
-                \ [{
-                \   'name': 'ccls',
-                \   'cmdline': [ 'ccls' ],
-                \   'filetypes': [ 'c', 'cpp', 'cuda', 'objc', 'objcpp' ],
-                \   'project_root_files': [ '.ccls-root', 'compile_commands.json' ]
-                \ }]
-    " source ~/.vim/coc.nvimrc
+" source ~/.vim/coc.nvimrc
 
 "Desativar destaque de função (afeta arquivos C e C++)
 let g:cpp_function_highlight = 1 

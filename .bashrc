@@ -96,19 +96,27 @@ alias la='ls -A'
 alias l='ls -CF'
 
 ## Meus Atalhaos
-alias solahic='clear && echo Benvido ao Solahic NIMDA! && ssh -p 22110 nimda@192.168.3.110'
+alias solahic='echo NIMDA! echo Benvido ao Solahic! && ssh -p 22110 nimda@192.168.3.110; clear'
+alias otomer='echo NIMDA! echo Benvido ao Solahic! && ssh -p 22110 nimda@179.108.209.57; clear'
 alias aline='clear && echo Aline! seja  Benvida a Solahic NIMDA! && ssh -p 22110 aline@179.108.209.57'
+alias elias='clear && ssh  -X -C -p 22211 root@192.168.3.216'
 
 # Usuário Archelinux
-alias arche='clear && ssh -p 23210 root@179.108.209.57'
-alias saile='clear && ssh -p 23210 saile@179.108.209.57'
-alias ppoo=' clear && ssh -p 23210 ppoo@179.108.209.57'
-alias cgrh=' clear && ssh -p 23210 cgrh@179.108.209.57'
-alias sgbd=' clear && ssh -p 23210 sgbd@179.108.209.57'
-alias arg2=' clear && ssh -p 23210 arg2@179.108.209.57'
-alias esof=' clear && ssh -p 23210 esof@179.108.209.57'
+alias arche='clear && ssh -X -p 23210 root@179.108.209.57'
+alias saile='clear && ssh -X -p 23210 saile@179.108.209.57'
+alias ppoo=' clear && ssh -X -p 23210 ppoo@179.108.209.57'
+alias cgrh=' clear && ssh -X -p 23210 cgrh@179.108.209.57'
+alias sgbd=' clear && ssh -X -p 23210 sgbd@179.108.209.57'
+alias arg2=' clear && ssh -X -p 23210 arg2@179.108.209.57'
+alias esof=' clear && ssh -X -p 23210 esof@179.108.209.57'
 
-# Git 
+# Atalhos pastas ppoo
+alias conta='cd ~/ppoo/exercicio-conta-bancaria-jeliasppoo/src/;rm *.class; clear; ls'
+alias conta2='cd ~/ppoo/exercicio-parte2-conta-bancaria-jeliasppoo/src/;rm *.class; clear; ls'
+alias world='cd ~/github-classroom/UFLA-PPOO-2022/exercicio-world-of-zuul-jeliasppoo/src/; rm *.class; clear; ls'
+alias zoo='cd ~/github-classroom/UFLA-PPOO-2022/exercicio-zoologico-jeliasppoo/src/; rm *.class; clear; ls'
+
+#Git 
 alias gitKey='sh-keygen -t rsa -b 4096 -C "elias.miranda@estudante.ufla.br; cat .ssh/id_rsa.pu"'
 alias openGl='gcc *.cpp -lGL -lGLU -lglut -lm; ./a.out'
 
@@ -117,7 +125,7 @@ alias sailes='clear && echo 'Usuaria Genericão' && ssh saile@192.168.3.34'
 # alias ppo='clear && echo 'PPOO' && ssh ppo@192.168.3.34'
 alias cof='clear && echo 'CompGraf' && ssh compgraf@192.168.3.34'
 # Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
+# sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
@@ -126,8 +134,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 # Atalos ppoo
-alias 1.4='cd ~/Codigos-PPOO/1.4_ppo-Ex.02/'
-alias compileJava='clear && javac -g *.java; java App;'
+alias javak='clear && javac -g *.java; java App'
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
