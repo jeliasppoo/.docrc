@@ -7,13 +7,8 @@ DOCENTE: JULIO CESAR ALVES
 Disciplina: Práticas de Programação Orientada a Objetos 
 TURMA: 10B_GA-C104 
 -------------------------------------------------------------*/
-import java.util.Scanner;
-import java.util.HashMap;
-import java.util.ArrayList;
 
 class 
-    public 
-        
-    }
+
 }
 
