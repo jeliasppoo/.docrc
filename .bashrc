@@ -114,11 +114,11 @@ alias esof=' clear && ssh -X -p 23210 esof@179.108.209.57'
 alias conta='cd ~/ppoo/exercicio-conta-bancaria-jeliasppoo/src/;rm *.class; clear; ls'
 alias conta2='cd ~/ppoo/exercicio-parte2-conta-bancaria-jeliasppoo/src/;rm *.class; clear; ls'
 alias world='cd ~/github-classroom/UFLA-PPOO-2022/exercicio-world-of-zuul-jeliasppoo/src/; rm *.class; clear; ls'
-alias zoo='cd ~/github-classroom/UFLA-PPOO-2022/exercicio-zoologico-jeliasppoo/src/; rm *.class; clear; ls'
+alias zoo='cd ~/github-classroom/UFLA-PPOO-2022/exercicio-zoologico-jeliasppoo/src/; rm *.class; clear; ls; *.java'
 
 #Git 
 alias gitKey='sh-keygen -t rsa -b 4096 -C "elias.miranda@estudante.ufla.br; cat .ssh/id_rsa.pu"'
-alias openGl='gcc *.cpp -lGL -lGLU -lglut -lm; ./a.out'
+alias openGl='clear; gcc *.cpp -lGL -lGLU -lglut -lm; ./a.out'
 
 # Acesso Remotos
 alias sailes='clear && echo 'Usuaria Genericão' && ssh saile@192.168.3.34'

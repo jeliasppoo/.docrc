@@ -55,7 +55,9 @@ let g:IndentLinesToggle = 1
 let g:indentLine_color_term = 256
 let g:indentLine_color_tty_light = 4 " (default: 4)
 let g:indentLine_color_dark = 2 " (default: 2)
+map <M-t> !gcc *.cpp -lGL -lGLU -lglut -lm; ./a.out
 " map  <ck> i :IndentLinesToggle <cr>
+
 
 " map <M-n> :NERDTreeToggle<cr>
 set encoding=utf8
@@ -82,7 +84,7 @@ let g:ale_completion_enabled = 1
     " 'python': ['yapf'], 'c++': ['yapf'],
 " }
 
-" Não sei o que faz 
+"Abrir nova aba  
 nmap <F10> :ALEFix<CR>
 
 "Salvamentos de arquivos vim 
@@ -131,12 +133,12 @@ function! Executar(arq)
     elseif &filetype == 'python'
         :exec '!python3' a:arq
     elseif &filetype == 'cpp'
-        :exec '!g++ -Wall -Wconversion -o /tmp/a.out' a:arq ';/tmp/a.out'
+        :exec '!g++ -Wall -Wconversion -o /tmp/a.out' a:arq ';/tmp/a.out' 
     elseif &filetype == 'java'
         :exec '!javac -Wall -Wconversion -o /tmp/a.out' a:arq ';/tmp/a.out'
     endif
 endfunction
-noremap <silent>! mk :w<cr>:!clear<cr>:call Executar(shellescape(@%, 1))<CR>
+noremap mk :w<cr>:!clear<cr>:call Executar(shellescape(@%, 1))<CR>
 
 function ReplaceAll()
     let a = expand("<cword>")
@@ -156,7 +158,14 @@ nnoremap <space> za
 nnoremap pdf <esc> :hardcopy
 nnoremap <c-l> :wall!<cr>:bn<cr>n
 nnoremap <c-h> :wall!<cr>:bp<cr>n
-
+"Bloqueio das teclas
+map <F1> <nop>
+map <left> <nop>
+map <right> <nop>
+map <Up> <nop>
+map <Down> <nop>
+" gcc *.cpp -lGL -lGLU -lglut -lm; ./a.out' 
+nnoremap <S-k> :wall<cr>:! clear;g++ *.cpp -lglut -lGLU -lGL -lm && ./a.out<cr>; 
 function Terminal()
     " verificar se há buffer bash aberto:
     let meuterminal = bufname('bash')
@@ -167,8 +176,8 @@ function Terminal()
         exec ':bwipe! ' bnr
     endif
 endfunction
-
 map <c-t> :call Terminal()<cr>
+
 au TerminalOpen * if &buftype == 'terminal' | setlocal nobuflisted | endif
 
 "Mapeamento java
