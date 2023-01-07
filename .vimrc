@@ -1,4 +1,4 @@
-autocmd BufNewFile *.cpp silent! 0r ~/Dropbox/.cabecalho/cpp.txt
+autocmd BufNewFile *.cpp silent! 0r ~/.docrc/.cabecalho/cpp.txt
 autocmd BufNewFile *.cpp silent! exe "1," . 14 . "g/File: .*/s//File: " . expand("%:t:r") . ".cpp"
 autocmd BufNewFile *.cpp silent! exe "1," . 14 . "g/Data: .*/s//Data: " . strftime("%d-%m-%y_2")
 autocmd BufNewFile *.cpp silent! exe "1," . 14 . "g/#ifndef .*/s//#ifndef ".expand("%:t:r").".cpp"
@@ -14,7 +14,7 @@ autocmd BufNewFile *.h silent! exe "1," . 14 . "g/#define .*/s//#define ".expand
 " autocmd BufNewFile *.cpp silent! exe "1," . 25 . "g/File: .*/s//File: " . expand("%:t:r") . ".cpp"
 " autocmd BufNewFile *.cpp silent! exe "1," . 25 . "g/Data: .*/s//Data: " . strftime("%d-%m-%y_22")
 "
-" source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/vimrc_example.vim
 
 autocmd BufNewFile *.java silent! 0r ~/Dropbox/.cabecalho/java.txt
 autocmd BufNewFile *.java silent! exe "1," . 14 . "g/File: .*/s//File: " . expand("%:t:r") . ".java"
@@ -23,7 +23,7 @@ autocmd BufNewFile *.java silent! exe "1," . 14 . "g/class .*/s//class " . expan
 autocmd BufNewFile *.java silent! exe "1," . 16 . "g/public .*/s//public " . expand("%:t:r")."(){"
 
 " public class App
-"salva a útima linha de edição 
+" salva a útima linha de edição 
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif 
 set foldmethod=syntax
 set wrap tw=120
@@ -76,7 +76,9 @@ let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 map \\ <Plug>NERDCommenterInvert
 
-let g:ale_linters = {'python': ['flake8', 'pylint'], 'javascript': ['eslint']}
+"sudo pip3 install flake8 pylint
+"sudo apm install slint
+let g:ale_linters = {'python': ['flake8', 'pylint'], 'javaScript': ['eslint']}
 "Alto Completo para vim 
 let g:ale_completion_enabled = 1
 
@@ -110,6 +112,9 @@ let g:markdown_syntax_conceal = 1
 let g:indentLine_enabled  =  1
 let g:indentLine_char = '┊'
 
+set statusline+=%F
+set laststatus=2
+
 let g:airline_symbols = { }
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
@@ -134,11 +139,15 @@ function! Executar(arq)
         :exec '!python3' a:arq
     elseif &filetype == 'cpp'
         :exec '!g++ -Wall -Wconversion -o /tmp/a.out' a:arq ';/tmp/a.out' 
+        :exec  g++ *.cpp -lglut -lGLU -lGL -lm && ./a.out<cr>; 
     elseif &filetype == 'java'
         :exec '!javac -Wall -Wconversion -o /tmp/a.out' a:arq ';/tmp/a.out'
     endif
 endfunction
+
 noremap mk :w<cr>:!clear<cr>:call Executar(shellescape(@%, 1))<CR>
+nnoremap <S-k> :wall<cr>:! clear; 
+" nnoremap <S-k> :wall<cr>:! clear;g++ *.cpp -lglut -lGLU -lGL -lm && ./a.out<cr>; 
 
 function ReplaceAll()
     let a = expand("<cword>")
@@ -164,8 +173,10 @@ map <left> <nop>
 map <right> <nop>
 map <Up> <nop>
 map <Down> <nop>
+map <F1> <nop>
 " gcc *.cpp -lGL -lGLU -lglut -lm; ./a.out' 
-nnoremap <S-k> :wall<cr>:! clear;g++ *.cpp -lglut -lGLU -lGL -lm && ./a.out<cr>; 
+"
+
 function Terminal()
     " verificar se há buffer bash aberto:
     let meuterminal = bufname('bash')
